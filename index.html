@@ -179,8 +179,7 @@ function element(tag, text, className) {
   return node;
 }
 
-form.addEventListener("submit", event => {
-  event.preventDefault();
+function search() {
   result.replaceChildren();
   input.removeAttribute("aria-invalid");
   let number;
@@ -219,7 +218,18 @@ form.addEventListener("submit", event => {
     list.append(card);
   }
   result.append(list);
+}
+
+form.addEventListener("submit", event => {
+  event.preventDefault();
+  search();
 });
+
+const urlNumber = new URLSearchParams(window.location.search).get("numero");
+if (urlNumber !== null) {
+  input.value = urlNumber;
+  search();
+}
 </script>
 </body>
 </html>
